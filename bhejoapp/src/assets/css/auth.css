@@ -10,9 +10,9 @@ body {
     align-items: center;
     height: 100vh;
   }
-  
+
   .card {
-    width: 300px;
+    width: 400px;
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
@@ -34,7 +34,9 @@ body {
     text-align: left;
     margin-bottom: 5px;
   }
-  
+  p {
+    text-align: left;
+  }
   input {
     padding: 10px;
     margin-bottom: 10px;
@@ -60,4 +62,3 @@ body {
     color: #007BFF;
     text-decoration: none;
   }
-  
