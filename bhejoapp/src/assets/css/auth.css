@@ -1,64 +1,187 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
 
-  .card {
-    width: 400px;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-  }
-  
-  h2 {
-    color: #007BFF;
-    margin-bottom: 20px;
-  }
-  
-  form {
+
+*{
+	margin: 0;
+	padding: 0;
+	font-family: var(--montserrat-font);
+}
+:root{
+	--dark-green:#075e54;
+	--green:#128c7e;
+	--lime-green:#25d366;
+	--light-bg:#dcf8c6;
+	--sky:#34b7f1;
+	--gray-color:#ece5dd;
+--montserrat-font:'Montserrat', sans-serif!important;
+
+}
+a{
+	text-decoration: none !important;
+} 
+    h1{
+        font-weight: 800;
+        font-size: 28px;
+        color: var(--dark-green);
+        margin: auto;
+        text-align: center;
+        text-shadow: 0 3px 0 rgba(15, 214, 78, 0.4);
+    }
+    .fieldError{
+        color:#740006;
+        font-size: 11px
+    }
+    .sign-in-container{
+        position: absolute;
+        top:0;
+        left:0;
+        width: 450px;
+        /* overflow-y:scroll ; */
+        display: flex;
+        /* flex-direction: column; */
+        align-items: start;
+        justify-content: center;
+        gap: 30px;
+        height: 100vh;
+        background-color: white;
+    }
+    .sign-in-body{
+        width: 450px;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        padding: 30px;
+    }
+
+    .form__group {
+  position: relative;
+  padding: 15px 0 0;
+  /* margin-top: 10px; */
+  width: 100%;
+}
+
+.form__field {
+  font-family: inherit;
+  width: 100%;
+  height: 45px;
+  border: 0;
+  border-bottom: 2px solid #9b9b9b;
+  outline: 0;
+  font-size: 12px;
+  color:gray;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+  -webkit-appearance:none;
+  /* z-index: 101; */
+}
+.form__field::placeholder {
+  color: transparent;
+}
+.form__field:placeholder-shown ~ .form__label {
+  font-size: 12px;
+  cursor: text;
+  top: 20px;
+
+}
+
+.form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 14px;
+  color: #9b9b9b;
+}
+
+.form__field:focus {
+  padding-bottom: 6px;
+  font-weight: 700;
+  border-width: 3px;
+  border-image: linear-gradient(to right, #11998e, #38ef7d);
+  border-image-slice: 1;
+}
+.form__field:focus ~ .form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: #11998e;
+  font-weight: 700;
+}
+
+/* reset input */
+.form__field:required, .form__field:invalid {
+  box-shadow: none;
+}
+.right-image{
+    height: 100vh;
+    width: 80%!important;
+    margin-left: auto;
+}
+form.signIn-form{
     display: flex;
     flex-direction: column;
-  }
-  
-  label {
-    text-align: left;
-    margin-bottom: 5px;
-  }
-  p {
-    text-align: left;
-  }
-  input {
+    gap: 30px;
+    position: relative;
+}
+
+.form-button{
+    width:100%;
+    background-color: var(--green);
+    color: white !important;
+    font-weight: 600;
+    text-transform: capitalize;
+    line-height: 45px;
+    border:none;
+    text-transform: capitalize;
+}
+.form-button:hover{
+    background-color: var(--lime-green);
+}
+.divider{
+    position: relative;
+}
+
+.divider .line{
+    display: block;
+    height: 2px;
+    width:100%;
+    background-color: var(--green);
+}
+.divider .text{
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    background-color: white;
     padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
-  
-  button {
-    padding: 10px;
-    background-color: #007BFF;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .switch {
-    margin-top: 15px;
-    font-size: 14px;
-  }
-  
-  .switch a {
-    color: #007BFF;
-    text-decoration: none;
-  }
+}
+.forget-text{
+    position: absolute;
+    right: 0;
+    top: 80px;
+    font-size: 12px;
+    height: fit-content;
+    z-index: 1;
+}
+.forget-text span{
+    color:gray;
+}
+.forget-text a{
+    color:var(--green);
+    font-weight: 800!important;
+    line-height: 24px;
+}
+.forget-text:hover a,.forget-text>a:hover{
+    color: var(--lime-green) !important;
+}
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset; /* Change 'white' to your desired background color */
+    transition: background-color 5000s ease-in-out 0s; /* Adjust transition duration as needed */
+}
+@media (max-width: 768px) {
+    .sign-in-container{
+        width: 100%;
+    }
+}
