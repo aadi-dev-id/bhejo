@@ -1,16 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../../assets/css/auth.css'
 import homeimage from '../../assets/images/home.jpg'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
 
 const Register = () => {
   const{register,handleSubmit,formState:{errors}} = useForm();
+  const[formerror,setError] = useState(false);
+  const navigate = useNavigate();
   const submitForm = async (formData)=>{
      const apiUrl = "http://localhost:3000/register";
-     let res = await axios.post(apiUrl,formData);
-     console.log(res);
+     console.log(apiUrl);
+     axios.post(apiUrl,formData)
+     .then(result=>{
+      if(result.data.email){
+        navigate("/login");
+      }else{
+        setError(result.data.error);
+      }
+     })
+     .catch(err=>{console.log(err)})
+     
   }
   const validateName = (value)=>{
     value = value.trim();
@@ -58,6 +69,7 @@ const Register = () => {
                       </div>
                       <div className="header-text">
                           <h2>Create New Account!</h2>
+                          <span className='fieldError'>{formerror}</span>
                       </div>
                       <form onSubmit={handleSubmit(submitForm)} className="signIn-form">
                           <div className='row'>
