@@ -9,6 +9,12 @@ const userSchema = new mongoose.Schema({
     email : String,
     mobile : String,
     password : String,
+    companyName : { type : String, default : null},
+    companyType : { type : String, default : null},
+    user_is : { type : String, default : null},
+    onboarded : { type : Boolean, default : false},
+    status : { type : Boolean, default : true},
+    createdAt : { type : Date, default : Date.now},
     tokens : [{token:String}]
 })
 
@@ -18,9 +24,9 @@ userSchema.methods.generateAuthToken=async function(){
     try{
         const token=jwt.sign({_id:this._id.toString()},process.env.SECRET_KEY)
         // console.log("JWT hhh",this);
-        this.tokens=this.tokens.concat({token:token})
-        await this.save()
-        return token
+        this.tokens=this.tokens.concat({token:token});
+        await this.save();
+        return token;
     }
     catch(e){
         console.log(e);

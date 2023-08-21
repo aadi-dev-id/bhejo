@@ -18,6 +18,9 @@
 a{
 	text-decoration: none !important;
 } 
+h5{
+    margin-bottom: 0;
+}
     h1{
         font-weight: 800;
         font-size: 28px;
@@ -26,16 +29,12 @@ a{
         text-align: center;
         text-shadow: 0 3px 0 rgba(15, 214, 78, 0.4);
     }
-    .fieldError{
-        color:#740006;
-        font-size: 11px
-    }
     .sign-in-container{
         position: absolute;
         top:0;
         left:0;
         width: 450px;
-        /* overflow-y:scroll ; */
+        overflow-y:scroll ;
         display: flex;
         /* flex-direction: column; */
         align-items: start;
@@ -62,7 +61,7 @@ a{
 .form__field {
   font-family: inherit;
   width: 100%;
-  height: 45px;
+  height: 42px;
   border: 0;
   border-bottom: 2px solid #9b9b9b;
   outline: 0;
@@ -132,15 +131,20 @@ form.signIn-form{
     color: white !important;
     font-weight: 600;
     text-transform: capitalize;
-    line-height: 45px;
+    line-height: 42px;
     border:none;
     text-transform: capitalize;
 }
 .form-button:hover{
-    background-color: var(--lime-green);
+    background-color: var(--lime-green)!important;
 }
 .divider{
     position: relative;
+}
+select:focus{
+    border:none;
+    box-shadow: none;
+    outline: 0px none #fff !important;
 }
 
 .divider .line{
@@ -179,6 +183,71 @@ form.signIn-form{
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px white inset; /* Change 'white' to your desired background color */
     transition: background-color 5000s ease-in-out 0s; /* Adjust transition duration as needed */
+}
+.onboarding {
+    background-image: url('../images/chat-bg.webp');
+    height: 100vh;
+    width:100vw;
+  }
+  .page-content{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 100%;
+   height: 100%;
+   padding: 0 12px;
+   background-color: rgb(6 6 6 / 10%);
+  }
+  .onboarding-form-content{
+   background-color: white;
+   width:420px;
+  }
+  .form-header{
+    background: rgb(17,153,142);
+    background: linear-gradient(90deg, rgba(17,153,142,1) 100%, rgba(56,239,125,1) 0%);
+    height: 45px;
+    color:white;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+  }
+.onboarding-form-content form{
+	padding:20px;
+	display:flex;
+	justify-content:flex-start;
+	flex-direction:column;
+	gap:12px;
+}
+.onboarding-form-content form .form-group{
+	display:flex;
+	flex-direction:column;
+	gap:8px;
+	/* margin-bottom:12px; */
+}
+.onboarding-form-content .form-group label{
+    font-weight: 700;
+}
+.onboarding-form-content .form-group label,.onboarding-form-content .form-group input,.onboarding-form-content .form-group select{
+    font-size: 12px;
+    border-radius: 0;
+    color:rgba(0, 0, 0, 0.813);
+    outline: 0px none #fff !important;
+}
+.form-group input,.form-group select{
+	height:42px;
+	border:1px solid #e2e2e2;
+	background-color:#f2f2f2;
+	outline:none;
+	padding:0 20px;
+}
+.tag-line{
+	font-size:14px;
+	color:var(--green);
+    font-weight: 500;
+	
+}
+.onboarding-form-content .form-group input[type="submit"]{
+    background-color: var(--green);
 }
 @media (max-width: 768px) {
     .sign-in-container{

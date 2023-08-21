@@ -1,23 +1,36 @@
 import React from 'react'
 import '../../assets/css/auth.css'
 import homeimage from '../../assets/images/home.jpg'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import { useState } from 'react'
+import {setCookie} from '../../Common'
 
 const Login = () => {
     const[formerror,setError] = useState(false);
+    const navigate = useNavigate();
     const submitForm = async (formData)=>{
-        const apiUrl = "http://localhost:3000/login";
+        const apiUrl = "http://localhost:3000/login"; 
         axios.post(apiUrl,formData)
         .then(result=>{
             if(result.data?.token){
-                console.log("Login Successfull");
+                setCookie("jwtoken",result.data?.token,24*60);
+                result.data.onboarded?navigate("/dashboard"):navigate("/onboarding");
             }else{
                 setError(result.data?.error);
             }
-        }).catch(err=>{console.log(err)})
+        }).catch((err)=>{
+            if(err.response){
+                setError(err.response.data.error);
+            }else if(err.request){
+                console.error('Request Error:', err.request);
+                setError("Something goes wrong! Try later!");
+            }else{
+                console.error('Request Setup Error:', err.message);
+                setError("Request Setup Error");
+            }
+        })
     }
     const{register,handleSubmit,formState:{errors}} = useForm();
     const loginOption = {

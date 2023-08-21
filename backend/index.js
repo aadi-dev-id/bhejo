@@ -1,16 +1,24 @@
 const express = require("express");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 require('dotenv').config();
 const bcryptjs=require('bcryptjs');
 const jwt=require('jsonwebtoken');
 require('./src/db/conn.js');
 const app = express();
-const port = 3000;
 const userRegister = require('./src/models/users.js')
+const auth=require('./src/middleware/auth.js');
+const corsOptions = {
+    origin: 'http://localhost:5173', // Replace with the actual origin of your frontend app
+    credentials: true, // Allow cookies and credentials
+  };
 
-app.use(cors());
+
+app.use(cors(corsOptions));
 app.use(express.json());
-app.use(express.urlencoded({extended:false}))
+app.use(express.urlencoded({extended:false}));
+app.use(cookieParser());
+
 app.get('/',(req,res)=>{
     res.send("Hello");
 });
@@ -23,18 +31,21 @@ app.post('/login', async (req,res)=>{
         const result = await userRegister.findOne({email:username});
         if(result?.email){
             const isMatch= await bcryptjs.compare(password,result.password)
-            console.log("match",isMatch);
             if(isMatch){
-                const token=await result.generateAuthToken();
-                res.json({token:token}); 
+                const token = await result.generateAuthToken();
+                res.cookie("jwtoken",token,{
+                    expires:new Date(Date.now() + 25892000000),
+                    httpOnly:true
+                });
+                res.json({token:token,onboarded:result.onboarded}); 
             }else{
-                res.json({error:"Invalid Password!"});
+                res.status(400).json({error:"Invalid Password!"});
             }
         }else{
-            res.json({error:"User not registered!"});
+            res.status(400).json({error:"User not registered!"});
         }
     }catch(error){
-        res.json({error:error});
+        res.status(400).json({error:error});
     }
 })
 app.post('/register',async (req,res)=>{
@@ -64,6 +75,42 @@ app.post('/register',async (req,res)=>{
     }
 })
 
-app.listen(port,()=>{
-    console.log(`Server is running at ${port}`);
+app.get('/checkLogin',auth,(req,res)=>{
+    res.json({status:true,userId:req.userId});
+})
+
+app.post('/onboarding',auth, async (req,res)=>{
+    try{
+        const userId = req.userId;
+        const companyDetails = {
+            companyName : req.body.companyName,
+            companyType : req.body.companyType,
+            user_is : req.body.user_is,
+            onboarded : true
+        }
+        userRegister.findOneAndUpdate({ _id: userId }, companyDetails, { new: true })
+        .then((data )=>{
+            if(data){
+                res.json("Onboarding successFully done!");
+            }else{
+                res.status(400).json({error:"Failed to onboard user"});
+            }
+        }).catch(error=>{
+            throw new Error(error);
+        });
+
+    }catch(error){
+        res.status(400).json({error:error});
+    }
+})
+
+
+
+
+
+
+
+
+app.listen(process.env.PORT,()=>{
+    console.log(`Server is running at ${process.env.PORT}`);
 }); 
