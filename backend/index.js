@@ -9,7 +9,7 @@ const app = express();
 const userRegister = require('./src/models/users.js')
 const auth=require('./src/middleware/auth.js');
 const corsOptions = {
-    origin: 'http://localhost:5173,https://bhejo-px3z.vercel.app/', // Replace with the actual origin of your frontend app
+    origin: 'https://bhejo-px3z.vercel.app/', // Replace with the actual origin of your frontend app
     credentials: true, // Allow cookies and credentials
   };
 
