@@ -60,11 +60,6 @@ app.post('/register',async (req,res)=>{
                 mobile : req.body.mobile,
                 password : await bcryptjs.hash(req.body.password,10)
             });
-            // const token= await userReg.generateAuthToken();
-            // res.cookie('jwt',token,{
-            //     expires:new Date(Date.now()+30000),
-            //     httpOnly:true
-            // });
             const registerresult = await userReg.save();
             res.json(registerresult);
         }else{

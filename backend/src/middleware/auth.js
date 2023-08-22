@@ -16,6 +16,6 @@ module.exports=auth=async(req,res,next)=>{
 
     } catch (error) {
         console.log("Auth Error : ",error.message);
-        res.status(401).send("Unauthorized token provide!");
+        res.status(401).send({error:"Unauthorized token provide!"});
     }
 }
