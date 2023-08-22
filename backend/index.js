@@ -9,7 +9,7 @@ const app = express();
 const userRegister = require('./src/models/users.js')
 const auth=require('./src/middleware/auth.js');
 const corsOptions = {
-    origin: '*', // Replace with the actual origin of your frontend app
+    origin: 'https://bhejo-px3z.vercel.app', // Replace with the actual origin of your frontend app
     credentials: true, // Allow cookies and credentials
   };
 
@@ -76,6 +76,7 @@ app.post('/register',async (req,res)=>{
 })
 
 app.get('/checkLogin',auth,(req,res)=>{
+    console.log("HEllo");
     res.json({status:true,userId:req.userId});
 })
 
