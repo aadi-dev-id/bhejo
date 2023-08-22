@@ -4,14 +4,15 @@ import homeimage from '../../assets/images/home.jpg'
 import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
+import {apiEndpoint} from '../../Common'
 
 const Register = () => {
+  const baseUrl = apiEndpoint();
   const{register,handleSubmit,formState:{errors}} = useForm();
   const[formerror,setError] = useState(false);
   const navigate = useNavigate();
   const submitForm = async (formData)=>{
-     const apiUrl = "http://localhost:3000/register";
-     console.log(apiUrl);
+    const apiUrl = baseUrl+"/register";
      axios.post(apiUrl,formData)
      .then(result=>{
       if(result.data.email){

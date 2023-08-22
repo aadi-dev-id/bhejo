@@ -17,6 +17,14 @@ const deleteCookie = (name) => {
     const expires = "expires=" + date.toUTCString();
     document.cookie = cookieName + "=;" + expires + ";path=/";
 }
-
+const apiEndpoint = () =>{
+    const mode = 'dev';
+    if(mode=='dev'){
+      return "http://localhost:3000";
+    }else{
+      // set live api url
+      return "http://localhost:3000"; 
+    }
+}
 export default Common
-export {setCookie,deleteCookie}
+export {setCookie,deleteCookie,apiEndpoint}

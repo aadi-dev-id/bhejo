@@ -5,13 +5,14 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import { useState } from 'react'
-import {setCookie} from '../../Common'
+import {setCookie,apiEndpoint} from '../../Common'
 
 const Login = () => {
+    const baseUrl = apiEndpoint();
     const[formerror,setError] = useState(false);
     const navigate = useNavigate();
     const submitForm = async (formData)=>{
-        const apiUrl = "http://localhost:3000/login"; 
+        const apiUrl = baseUrl+"/login"; 
         axios.post(apiUrl,formData)
         .then(result=>{
             if(result.data?.token){

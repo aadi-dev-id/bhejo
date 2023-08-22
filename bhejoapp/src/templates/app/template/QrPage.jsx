@@ -1,17 +1,16 @@
 import React, { useEffect } from 'react'
 import '../../../assets/css/auth.css'
 import { Link, useNavigate } from 'react-router-dom'
-import { useForm } from 'react-hook-form'
-import axios from 'axios'
-import { useState } from 'react'
+import {apiEndpoint} from '../../../Common'
 import QrGenerator from '../../../qr/QrGenerator'
 
 const QrPage = () => {
   const navigate = useNavigate();
   let qrId = null;
+  const baseUrl = apiEndpoint();
   const callPage = async ()=>{
     try {
-      const res = await fetch('http://localhost:3000/checkLogin',{
+      const res = await fetch(baseUrl+'/checkLogin',{
         method:"GET",
         headers : {
           Accept : "application/json",
@@ -40,7 +39,7 @@ const QrPage = () => {
         <div className="page-content">
             <div className="onboarding-form-content">
                 <div className="form-header">
-                    <h5 className="form-heading">Geting Started With Bhejo</h5>
+                    <h5 className="form-heading">Getting Started With Bhejo</h5>
                 </div>
                 <div className="m-3 text-center">
                     <p>Scan this qr code & start to send message with your WhatsApp App.</p>

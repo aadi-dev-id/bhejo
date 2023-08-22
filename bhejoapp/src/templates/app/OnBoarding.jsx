@@ -4,12 +4,15 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import { useState } from 'react'
+import {apiEndpoint} from '../../Common'
 
 const OnBoarding = () => {
   const navigate = useNavigate();
+  const baseUrl = apiEndpoint();
   const callPage = async ()=>{
     try {
-      const res = await fetch('http://localhost:3000/checkLogin',{
+      const apiUrl = baseUrl+"/checkLogin";
+      const res = await fetch(apiUrl,{
         method:"GET",
         headers : {
           Accept : "application/json",
@@ -33,7 +36,7 @@ const OnBoarding = () => {
   const[formError,setError] = useState();
   const{register,handleSubmit} = useForm();
   const submitForm = async (formData)=>{
-    const apiUrl = "http://localhost:3000/onboarding"; 
+    const apiUrl = baseUrl+"/onboarding"; 
         axios.post(apiUrl,formData,{withCredentials: true})
         .then(result=>{
             navigate('/get-started');
