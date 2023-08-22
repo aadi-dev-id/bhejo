@@ -18,12 +18,12 @@ const deleteCookie = (name) => {
     document.cookie = cookieName + "=;" + expires + ";path=/";
 }
 const apiEndpoint = () =>{
-    const mode = 'dev';
+    const mode = 'prod';
     if(mode=='dev'){
       return "http://localhost:3000";
     }else{
       // set live api url
-      return "http://localhost:3000"; 
+      return "https://bhejo-api-deploy.vercel.app"; 
     }
 }
 export default Common
