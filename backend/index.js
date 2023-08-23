@@ -122,7 +122,7 @@ app.post('/webhooks', (req, res) => {
     if (req.query['hub.mode'] == 'subscribe' && req.query['hub.verify_token'] == process.env.WEBHOOKTOKEN) {
       res.send(req.query['hub.challenge']);
     } else {
-      console.log(req.data);
+      console.log(req);
       res.sendStatus(200);
     }
 })
