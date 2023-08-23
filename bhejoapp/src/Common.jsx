@@ -15,7 +15,7 @@ const deleteCookie = (name) => {
     const date = new Date();
     date.setTime(date.getTime() - 5000); // Convert hours to milliseconds
     const expires = "expires=" + date.toUTCString();
-    document.cookie = cookieName + "=;" + expires + ";path=/";
+    document.cookie = name + "=;" + expires + ";path=/";
     return true;
 }
 const apiEndpoint = () =>{

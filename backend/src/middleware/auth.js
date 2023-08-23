@@ -3,7 +3,6 @@ const User = require("../models/users");
 
 module.exports=auth=async(req,res,next)=>{
     try { 
-        console.log("REQ",req);
         const [bearer, token] = req.headers?.authorization.split(' ');
         const verifyToken = jwt.verify(token,process.env.SECRET_KEY);
         const rootUser = await User.findOne({_id:verifyToken._id,"tokens.token":token});
@@ -15,7 +14,7 @@ module.exports=auth=async(req,res,next)=>{
         next();
 
     } catch (error) {
-        console.log("Auth Error : ",error.message);
+        // console.log("Auth Error : ",error.message);
         res.status(401).send({error:"Unauthorized token provide!"});
     }
 }

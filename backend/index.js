@@ -154,7 +154,22 @@ app.post('/webhooks', async(req, res) => {
     }
 })
 
-
+app.post('/getConversation',auth,async(req,res)=>{
+    try {
+        const userId = req.userId;
+        const result = await messages.find().select({from:1}).sort({_id:-1});
+        const uniqueFromNumbers = [...new Set(result.map(result => result.from))];
+        let conversation = [];
+        let fromnum = "";
+        if(uniqueFromNumbers.length > 0){
+            fromnum = uniqueFromNumbers[0];
+            conversation = await messages.find({from:fromnum});
+        }
+        res.json({contacts : uniqueFromNumbers,conversation:conversation,fromnum:fromnum});
+    } catch (error) {
+        res.status(400).json({error:error});
+    }
+})
 
 
 
