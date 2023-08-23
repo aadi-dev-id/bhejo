@@ -1,6 +1,13 @@
 import React from 'react'
 import '../../assets/css/convers.css'
+import {deleteCookie} from '../../Common'
+import { useNavigate } from 'react-router-dom'
 const Conversation = () => {
+    const navigate = useNavigate();
+    const logout = async()=>{
+        const rs = await deleteCookie('jwtoken');
+        navigate('/login');
+    }
   return (
     <div>
       <section className="side-bar-section h-100">
@@ -25,7 +32,7 @@ const Conversation = () => {
                                     </a>
                                     <ul className="submenu-list">
                                         <li className="submenu-item">
-                                            <a href="" className="submenu-item-link">
+                                            <a href="javascript:" onClick={logout()} className="submenu-item-link">
                                                 <span className="submenu-item-text">Logout</span>
                                                 <i className="fa-solid fa-chevron-right"></i>
                                             </a>
@@ -46,20 +53,20 @@ const Conversation = () => {
                             <i className="fa-solid fa-bars"></i>
                         </span>
                         <div className="user-top-profile">
-                            <span className="user-name">Aliza Beth</span>
+                            <span className="user-name">Profile</span>
                             <div className="user-img">
                                 <img src="" alt=""/>
                             </div>
                             <div className="user-detail-pop-box" style={{ display: 'none' }}>
                                 <ul className="top-user-menu">
                                     <li className="top-user-menu-item">
-                                        <a href="" className="top-menu-link">
+                                        <a href="javascript:0" onClick={logout()} className="top-menu-link">
                                             <i className="fa-solid fa-power-off"></i>
                                             <span>Logout</span>
                                         </a>
                                     </li>
                                     <li className="top-user-menu-item">
-                                        <a href="" className="top-menu-link">
+                                        <a href="#" className="top-menu-link">
                                             <i className="fa-solid fa-pen-to-square"></i>
                                             <span>Edit Profile</span>
                                         </a>
