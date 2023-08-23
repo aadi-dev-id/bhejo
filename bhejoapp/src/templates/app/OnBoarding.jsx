@@ -4,19 +4,23 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import { useState } from 'react'
-import {apiEndpoint} from '../../Common'
+import {getCookie,apiEndpoint} from '../../Common'
 
 const OnBoarding = () => {
+  const[jwtoken,setToken] = useState()
   const navigate = useNavigate();
   const baseUrl = apiEndpoint();
   const callPage = async ()=>{
     try {
       const apiUrl = baseUrl+"/checkLogin";
-      const res = await fetch(apiUrl,{
-        method:"GET",
-        headers : {
-          Accept : "application/json",
-          "Content-Type":"application/json"
+      let token = await getCookie("jwtoken");
+      setToken(token);
+      const res = await fetch(apiUrl,{ 
+        method:"POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
         },
         credentials : "include"
       });
@@ -37,7 +41,7 @@ const OnBoarding = () => {
   const{register,handleSubmit} = useForm();
   const submitForm = async (formData)=>{
     const apiUrl = baseUrl+"/onboarding"; 
-        axios.post(apiUrl,formData,{withCredentials: true})
+        axios.post(apiUrl,formData,{withCredentials: true,headers:{'Authorization': `Bearer ${jwtoken}`}})
         .then(result=>{
             navigate('/get-started');
         }).catch((err)=>{

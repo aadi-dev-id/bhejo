@@ -1,4 +1,5 @@
 const express = require("express");
+// const session = require('express-session');
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 require('dotenv').config();
@@ -16,6 +17,17 @@ const corsOptions = {
 
 app.use(cookieParser());
 app.use('*',cors(corsOptions));
+// // Configure express-session middleware
+// app.use(session({
+//     secret: process.env.SESSION_KEY, // This should be a long, random string, used to sign the session ID cookie.
+//     resave: false,            // Don't save the session to the store unless it's modified.
+//     saveUninitialized: true,  // Save new, uninitialized sessions.
+//     cookie: {
+//       secure: false, // Set this to true if you're using HTTPS
+//       httpOnly: true, // Set this to true for security
+//       sameSite : 'none'
+//     },
+//   }));
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 
@@ -36,7 +48,7 @@ app.post('/login', async (req,res)=>{
                 const token = await result.generateAuthToken();
                 res.cookie("jwtoken",token,{
                     expires:new Date(Date.now() + 25892000000),
-                    // httpOnly:true
+                    httpOnly:true
                 });
                 res.json({token:token,onboarded:result.onboarded}); 
             }else{
@@ -64,7 +76,7 @@ app.post('/register',async (req,res)=>{
             const token = await userReg.generateAuthToken();
             res.cookie("jwtoken",token,{
                 expires:new Date(Date.now() + 25892000000),
-                // httpOnly:true
+                httpOnly:true
             });
             const registerresult = await userReg.save();
             res.json(registerresult);
@@ -76,7 +88,7 @@ app.post('/register',async (req,res)=>{
     }
 })
 
-app.get('/checkLogin',auth,(req,res)=>{
+app.post('/checkLogin',auth,(req,res)=>{
     console.log("HEllo");
     res.json({status:true,userId:req.userId});
 })

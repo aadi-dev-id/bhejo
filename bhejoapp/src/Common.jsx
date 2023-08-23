@@ -26,5 +26,19 @@ const apiEndpoint = () =>{
       return "https://bhejo-api-deploy.vercel.app"; 
     }
 }
+// Function to get the value of a specific cookie by its name
+const getCookie = async (cookieName)=>{
+  const name = cookieName + "=";
+  const cookies = document.cookie.split(';');
+
+  for (let i = 0; i < cookies.length; i++) {
+    let cookie = cookies[i].trim();
+    if (cookie.indexOf(name) === 0) {
+      return cookie.substring(name.length, cookie.length);
+    }
+  }
+  return ""; // Return an empty string if the cookie is not found
+}
+
 export default Common
-export {setCookie,deleteCookie,apiEndpoint}
+export {setCookie,getCookie,deleteCookie,apiEndpoint}
