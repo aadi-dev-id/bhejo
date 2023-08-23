@@ -17,7 +17,7 @@ const Login = () => {
         .then(result=>{
             if(result.data?.token){
                 setCookie("jwtoken",result.data?.token,24*60);
-                result.data.onboarded?navigate("/dashboard"):navigate("/onboarding");
+                result.data.onboarded?navigate("/conversation"):navigate("/onboarding");
             }else{
                 setError(result.data?.error);
             }
