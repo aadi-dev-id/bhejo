@@ -118,16 +118,13 @@ app.post('/onboarding',auth, async (req,res)=>{
     }
 })
 
-// app.get('/webhooks',  (req, res) => {
-//     if (
-//       req.query['hub.mode'] == 'subscribe' &&
-//       req.query['hub.verify_token'] == token
-//     ) {
-//       res.send(req.query['hub.challenge']);
-//     } else {
-//       res.sendStatus(400);
-//     }
-// })
+app.get('/webhooks', (req, res) => {
+    if (req.query['hub.mode'] == 'subscribe' && req.query['hub.verify_token'] == process.env.WEBHOOKTOKEN) {
+      res.send(req.query['hub.challenge']);
+    } else {
+      res.sendStatus(400);
+    }
+})
 
 
 
