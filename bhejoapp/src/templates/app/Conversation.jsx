@@ -1,6 +1,4 @@
 import React from 'react'
-import '../../assets/css/style.css'
-import script from '../../assets/js/script.js'
 const Conversation = () => {
   return (
     <div>
