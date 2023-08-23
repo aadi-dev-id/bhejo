@@ -11,7 +11,6 @@ const QrPage = () => {
   const whatsAppBase = "https://wa.me/916386003550?text="+userId;
   const[qrLink,setLink] = useState();
   
-  setLink(whatsAppBase+userId);
   const baseUrl = apiEndpoint();
   const callPage = async ()=>{
     try {
@@ -32,6 +31,7 @@ const QrPage = () => {
         throw new Error(res.error);
       }
       setUserId(res.data?.userId);
+      setLink(whatsAppBase+userId);
     } catch (error) {
       console.log("FETCH ERROR : ",error);
       navigate('/login');
