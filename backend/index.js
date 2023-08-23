@@ -8,16 +8,17 @@ require('./src/db/conn.js');
 const app = express();
 const userRegister = require('./src/models/users.js')
 const auth=require('./src/middleware/auth.js');
+// const allowedOrigins = ['https://bhejo-px3z.vercel.app'];
 const corsOptions = {
-    origin: 'https://bhejo-px3z.vercel.app', // Replace with the actual origin of your frontend app
+    origin: true, 
     credentials: true, // Allow cookies and credentials
   };
 
-
-app.use(cors(corsOptions));
+app.use(cookieParser());
+app.use('*',cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
-app.use(cookieParser());
+
 
 app.get('/',(req,res)=>{
     res.send("Hello");
@@ -35,7 +36,7 @@ app.post('/login', async (req,res)=>{
                 const token = await result.generateAuthToken();
                 res.cookie("jwtoken",token,{
                     expires:new Date(Date.now() + 25892000000),
-                    httpOnly:true
+                    // httpOnly:true
                 });
                 res.json({token:token,onboarded:result.onboarded}); 
             }else{
@@ -59,6 +60,11 @@ app.post('/register',async (req,res)=>{
                 email : req.body.username,
                 mobile : req.body.mobile,
                 password : await bcryptjs.hash(req.body.password,10)
+            });
+            const token = await userReg.generateAuthToken();
+            res.cookie("jwtoken",token,{
+                expires:new Date(Date.now() + 25892000000),
+                // httpOnly:true
             });
             const registerresult = await userReg.save();
             res.json(registerresult);
@@ -100,7 +106,16 @@ app.post('/onboarding',auth, async (req,res)=>{
     }
 })
 
-
+// app.get('/webhooks',  (req, res) => {
+//     if (
+//       req.query['hub.mode'] == 'subscribe' &&
+//       req.query['hub.verify_token'] == token
+//     ) {
+//       res.send(req.query['hub.challenge']);
+//     } else {
+//       res.sendStatus(400);
+//     }
+// })
 
 
 
