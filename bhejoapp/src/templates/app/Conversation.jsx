@@ -50,7 +50,7 @@ const Conversation = () => {
                             <div classname="user-img">
                                 <img src="" alt=""/>
                             </div>
-                            <div classname="user-detail-pop-box" style="display: none;">
+                            <div classname="user-detail-pop-box" style={{ display: 'none' }}>
                                 <ul classname="top-user-menu">
                                     <li classname="top-user-menu-item">
                                         <a href="" classname="top-menu-link">
