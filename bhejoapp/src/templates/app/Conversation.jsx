@@ -1,6 +1,5 @@
 import React from 'react'
 import '../../assets/css/convers.css'
-import script from '../../assests/js/script.js'
 const Conversation = () => {
   return (
     <div>
@@ -143,7 +142,7 @@ const Conversation = () => {
     </section>
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-    <script src={script}></script>
+    <script src="../../assets/js/script.js"></script>
     </div>
   )
 }
