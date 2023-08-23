@@ -8,6 +8,7 @@ const jwt=require('jsonwebtoken');
 require('./src/db/conn.js');
 const app = express();
 const userRegister = require('./src/models/users.js')
+const messages = require('./src/models/messages.js')
 const auth=require('./src/middleware/auth.js');
 // const allowedOrigins = ['https://bhejo-px3z.vercel.app'];
 const corsOptions = {
@@ -118,12 +119,38 @@ app.post('/onboarding',auth, async (req,res)=>{
     }
 })
 
-app.post('/webhooks', (req, res) => {
+app.post('/webhooks', async(req, res) => {
     if (req.query['hub.mode'] == 'subscribe' && req.query['hub.verify_token'] == process.env.WEBHOOKTOKEN) {
       res.send(req.query['hub.challenge']);
     } else {
-      console.log(req);
-      res.sendStatus(200);
+      try {
+        const wData = req.body;
+        if(wData.object=='whatsapp_business_account'){
+            const to = wData.entry[0].changes[0].value.metadata.display_phone_number;
+            const from = wData.entry[0].changes[0].value.messages[0].from;
+            let msg = "Un-supported Incoming Message";
+            if(wData.entry[0].changes[0].value.messages[0].type=='text'){
+                msg = wData.entry[0].changes[0].value.messages[0].text.body;
+            }
+            const log = "INCOMING";
+            let tonum = +to;
+            let fromnum = +from;
+            const cid = tonum+fromnum;
+            const message = new messages({
+                to : to,
+                from : from,
+                cid : cid,
+                msg : msg,
+                log : log
+            });
+            const msgRes = await message.save();
+            res.sendStatus(200);
+        }else{
+            res.sendStatus(401);
+        }
+      } catch (error) {
+        res.sendStatus(500);
+      }
     }
 })
 
