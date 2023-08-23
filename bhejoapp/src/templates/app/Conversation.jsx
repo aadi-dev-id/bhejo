@@ -1,5 +1,6 @@
 import React from 'react'
 import '../../assets/css/convers.css'
+importScripts('../../assests/js/script.js');
 const Conversation = () => {
   return (
     <div>
