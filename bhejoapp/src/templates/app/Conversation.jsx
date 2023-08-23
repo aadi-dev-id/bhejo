@@ -1,32 +1,33 @@
 import React from 'react'
+import '../../assets/css/convers.css'
 const Conversation = () => {
   return (
     <div>
-      <section classname="side-bar-section h-100">
-        <div classname="side-bar-container h-100">
-            <div classname="nav-container">
-                <div classname="left-sidebar">
-                    <div classname="left-sidebar-body">
-                        <h2 classname="dashboard-header">Bhejo </h2>
-                        <nav classname="side-nav">
-                            <ul classname="menu-list">
-                                <li classname="menu-item">
-                                    <a href="" classname="menu-item-link">
-                                        <span classname="menu-item-text">Home</span>
-                                        <i classname="fa-solid fa-chevron-right"></i>
+      <section className="side-bar-section h-100">
+        <div className="side-bar-container h-100">
+            <div className="nav-container">
+                <div className="left-sidebar">
+                    <div className="left-sidebar-body">
+                        <h2 className="dashboard-header">Bhejo </h2>
+                        <nav className="side-nav">
+                            <ul className="menu-list">
+                                <li className="menu-item">
+                                    <a href="" className="menu-item-link">
+                                        <span className="menu-item-text">Home</span>
+                                        <i className="fa-solid fa-chevron-right"></i>
                                     </a>
                                 </li>
                                 
-                                <li classname="menu-item submenu-toggler">
-                                    <a classname="menu-item-link">
-                                        <span classname="menu-item-text">Settings</span>
-                                        <i classname="fa-solid fa-chevron-right"></i>
+                                <li className="menu-item submenu-toggler">
+                                    <a className="menu-item-link">
+                                        <span className="menu-item-text">Settings</span>
+                                        <i className="fa-solid fa-chevron-right"></i>
                                     </a>
-                                    <ul classname="submenu-list">
-                                        <li classname="submenu-item">
-                                            <a href="" classname="submenu-item-link">
-                                                <span classname="submenu-item-text">Logout</span>
-                                                <i classname="fa-solid fa-chevron-right"></i>
+                                    <ul className="submenu-list">
+                                        <li className="submenu-item">
+                                            <a href="" className="submenu-item-link">
+                                                <span className="submenu-item-text">Logout</span>
+                                                <i className="fa-solid fa-chevron-right"></i>
                                             </a>
                                         </li>
                                         
@@ -38,28 +39,28 @@ const Conversation = () => {
                         </nav>
                     </div>
                 </div>
-                <div classname="content-with-top">
+                <div className="content-with-top">
 
-                    <div classname="top-header">
-                        <span classname="menu-trigger">
-                            <i classname="fa-solid fa-bars"></i>
+                    <div className="top-header">
+                        <span className="menu-trigger">
+                            <i className="fa-solid fa-bars"></i>
                         </span>
-                        <div classname="user-top-profile">
-                            <span classname="user-name">Aliza Beth</span>
-                            <div classname="user-img">
+                        <div className="user-top-profile">
+                            <span className="user-name">Aliza Beth</span>
+                            <div className="user-img">
                                 <img src="" alt=""/>
                             </div>
-                            <div classname="user-detail-pop-box" style={{ display: 'none' }}>
-                                <ul classname="top-user-menu">
-                                    <li classname="top-user-menu-item">
-                                        <a href="" classname="top-menu-link">
-                                            <i classname="fa-solid fa-power-off"></i>
+                            <div className="user-detail-pop-box" style={{ display: 'none' }}>
+                                <ul className="top-user-menu">
+                                    <li className="top-user-menu-item">
+                                        <a href="" className="top-menu-link">
+                                            <i className="fa-solid fa-power-off"></i>
                                             <span>Logout</span>
                                         </a>
                                     </li>
-                                    <li classname="top-user-menu-item">
-                                        <a href="" classname="top-menu-link">
-                                            <i classname="fa-solid fa-pen-to-square"></i>
+                                    <li className="top-user-menu-item">
+                                        <a href="" className="top-menu-link">
+                                            <i className="fa-solid fa-pen-to-square"></i>
                                             <span>Edit Profile</span>
                                         </a>
                                     </li>
@@ -69,63 +70,63 @@ const Conversation = () => {
                         </div>
                     </div>
                     
-                    <div classname="Dashboard-content-container p-4">
-                          <div classname="chat-box-container">
-                        <div classname="chat-list-container">
-                            <div classname="chat-list-header">
-                                <h2 classname="chat-list-heading">Contacts</h2>
+                    <div className="Dashboard-content-container p-4">
+                          <div className="chat-box-container">
+                        <div className="chat-list-container">
+                            <div className="chat-list-header">
+                                <h2 className="chat-list-heading">Contacts</h2>
                             </div>
-                            <div classname="chat-list">
-                                <div classname="chat-header">
-                                    <div classname="chat-user-profile">
+                            <div className="chat-list">
+                                <div className="chat-header">
+                                    <div className="chat-user-profile">
                                         <img src="" alt="" />
                                     </div>
-                                    <div classname="chat-user-name-time">
-                                        <h6 classname="chat-user-name m-0">Ankita</h6>
-                                        <span classname="last-chat">Last Seen 2:05 PM</span>
+                                    <div className="chat-user-name-time">
+                                        <h6 className="chat-user-name m-0">Ankita</h6>
+                                        <span className="last-chat">Last Seen 2:05 PM</span>
                                     </div>
                                 </div>
-                                <div classname="chat-header">
-                                    <div classname="chat-user-profile">
+                                <div className="chat-header">
+                                    <div className="chat-user-profile">
                                         <img src="" alt="" />
                                     </div>
-                                    <div classname="chat-user-name-time">
-                                        <h6 classname="chat-user-name m-0">Ankita</h6>
-                                        <span classname="last-chat">Last Seen 2:05 PM</span>
+                                    <div className="chat-user-name-time">
+                                        <h6 className="chat-user-name m-0">Ankita</h6>
+                                        <span className="last-chat">Last Seen 2:05 PM</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                            <div classname="chat-box">
-                                <div classname="chat-header">
-                                    <div classname="chat-user-profile">
+                            <div className="chat-box">
+                                <div className="chat-header">
+                                    <div className="chat-user-profile">
                                         <img src="" alt=""/>
                                     </div>
-                                    <div classname="chat-user-name-time">
-                                        <h6 classname="chat-user-name m-0">Ankita</h6>
-                                        <span classname="last-chat">Last Seen 2:05 PM</span>
+                                    <div className="chat-user-name-time">
+                                        <h6 className="chat-user-name m-0">Ankita</h6>
+                                        <span className="last-chat">Last Seen 2:05 PM</span>
                                     </div>
                                 </div>
-                                <div classname="chat-body">
-                                    <div classname="chat-inner-content">
-                                        <div classname="incoming-chat-message">
-                                            <p classname="chat-mess">
+                                <div className="chat-body">
+                                    <div className="chat-inner-content">
+                                        <div className="incoming-chat-message">
+                                            <p className="chat-mess">
                                                 You can resize the IE Window to your liking b
                                             </p>
                                         </div>
 
-                                        <div classname="outgoing-chat-message">
-                                            <p classname="chat-mess">
+                                        <div className="outgoing-chat-message">
+                                            <p className="chat-mess">
                                                 You can resize the IE Window to your liking b
                                             </p>
                                         </div>
 
                                     </div>
                                 </div>
-                                <div classname="chat-footer">
+                                <div className="chat-footer">
                                     <textarea name="" id="" rows="2"></textarea>
-                                    <button classname="send-btn">
-                                        <i classname="fa-solid fa-paper-plane"></i>
+                                    <button className="send-btn">
+                                        <i className="fa-solid fa-paper-plane"></i>
                                     </button>
                                 </div>
                             </div>
